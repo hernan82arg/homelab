@@ -37,7 +37,5 @@ spec:
       pathType: Prefix
     extraArgs:
       - --token-ttl=43200
-    metrics-server:
-      enabled: true
     rbac:
       clusterReadOnlyRole: true
