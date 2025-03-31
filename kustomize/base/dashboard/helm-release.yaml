@@ -32,10 +32,10 @@ spec:
       enabled: true
       className: nginx
       hosts:
-        - host: dashboard.cluster.local
-          paths:
-            - path: /
-              pathType: Prefix
+        - dashboard.cluster.local
+      paths:
+        - path: /
+          pathType: Prefix
     extraArgs:
       - --token-ttl=43200
     metrics-server:
