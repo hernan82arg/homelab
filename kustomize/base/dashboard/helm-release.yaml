@@ -39,3 +39,11 @@ spec:
       - --token-ttl=43200
     rbac:
       clusterReadOnlyRole: true
+    web:
+      nodeSelector:
+        node-role.kubernetes.io/control-plane: ""
+    app:
+      tolerations:
+        - key: "node-role.kubernetes.io/control-plane"
+          operator: "Exists"
+          effect: "NoSchedule"
