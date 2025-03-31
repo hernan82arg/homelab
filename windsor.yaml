@@ -1,0 +1,7 @@
+version: v1alpha1
+contexts:
+  homelab:
+    terraform:
+      enabled: true
+      backend:
+        type: local
