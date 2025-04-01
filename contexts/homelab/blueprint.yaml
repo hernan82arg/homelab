@@ -94,3 +94,10 @@ kustomize:
 - name: dashboard
   path: base/dashboard
   force: true
+- name: monitoring
+  path: monitoring
+  force: true
+  dependsOn:
+  - ingress-base
+  components:
+  - prometheus/operator
