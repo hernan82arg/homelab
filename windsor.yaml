@@ -1,7 +1,20 @@
 version: v1alpha1
 contexts:
   homelab:
+    blueprint: full
     terraform:
       enabled: true
       backend:
         type: local
+    cluster:
+      platform: metal
+      endpoint: 192.168.1.137
+      workers:
+        volumes:
+          - local:/var/lib/openebs
+    network:
+      loadbalancer_ips:
+        start: 192.168.1.200
+        end: 192.168.1.210
+    dns:
+      domain: homelab.local
