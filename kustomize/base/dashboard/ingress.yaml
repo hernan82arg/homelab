@@ -6,6 +6,10 @@ metadata:
   namespace: kube-system
 spec:
   ingressClassName: nginx
+  tls:
+  - hosts:
+    - dashboard.homelab.local
+    secretName: dashboard-tls
   rules:
   - host: dashboard.homelab.local
     http:
