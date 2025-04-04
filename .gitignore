@@ -1,4 +1,3 @@
-flux.tfvars
 # managed by windsor cli
 .windsor/
 .volumes/
