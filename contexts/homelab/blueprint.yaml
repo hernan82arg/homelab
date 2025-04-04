@@ -134,6 +134,6 @@ kustomize:
   - grafana/flux
 - name: dashboard
   path: base/dashboard
-  force: true
   dependsOn:
   - pki-base
+  force: true
