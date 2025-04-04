@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: dashboard
   namespace: kube-system
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: "HTTPS"
 spec:
   ingressClassName: nginx
   rules:
