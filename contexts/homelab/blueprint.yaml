@@ -136,4 +136,13 @@ kustomize:
   path: base/dashboard
   dependsOn:
   - pki-base
+  - ingress-base
   force: true
+- name: data
+  path: data
+  dependsOn:
+  - csi
+  force: true
+  components:
+  - redis-cluster
+  - postgres/cloudnativepg

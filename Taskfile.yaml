@@ -1,0 +1,23 @@
+version: "3"
+
+vars:
+  PROJECT_ROOT:
+    sh: git rev-parse --show-toplevel
+
+tasks:
+  init:fzf:
+    cmds:
+      - cmd: command -v fzf || choco install fzf -y
+        platforms: [windows]
+      - cmd: which fzf || brew install fzf
+        platforms: [darwin, linux]
+
+  kubens:
+    interactive: true
+    deps:
+      - task: init:fzf
+    env:
+      KUBECONFIG: $KUBECONFIG
+    cmds:
+      - cmd: . {{ .PROJECT_ROOT }}/.task/k8s-namespace.sh
+        platforms: [darwin, linux]
