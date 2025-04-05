@@ -16,6 +16,8 @@ spec:
   values:
     auth:
       password: "${REDIS_PASSWORD}"
+    replica:
+      replicaCount: 1
     persistence:
       enabled: true
       size: 8Gi
