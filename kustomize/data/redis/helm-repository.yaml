@@ -1,7 +1,7 @@
 apiVersion: source.toolkit.fluxcd.io/v1beta2
 kind: HelmRepository
 metadata:
-  name: bitnami-redis-cluster
+  name: bitnami-redis
   namespace: data
 spec:
   type: oci
