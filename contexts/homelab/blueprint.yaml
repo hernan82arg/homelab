@@ -152,3 +152,8 @@ kustomize:
   dependsOn:
   - pki-base
   force: true
+- name: tapo-web
+  path: tapo/web
+  dependsOn:
+  - pki-base
+  force: true

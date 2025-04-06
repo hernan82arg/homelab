@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: tapo-web
+  namespace: tapo
+  labels:
+    app: tapo-web
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: tapo-web
+  template:
+    metadata:
+      labels:
+        app: tapo-web
+    spec:
+      containers:
+      - name: tapo-web
+        image: ghcr.io/hernan82arg/homeweb:latest
+        ports:
+        - containerPort: 3000
+        env:
+        - name: API_URL
+          value: "http://tapo-rest:80"
+        - name: API_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tapo-credentials
+              key: AUTH_PASSWORD
+        resources:
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+          requests:
+            memory: "128Mi" 
+            cpu: "100m"
