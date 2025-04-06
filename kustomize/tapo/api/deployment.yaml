@@ -18,6 +18,7 @@ spec:
       containers:
       - name: tapo-rest
         image: ghcr.io/hernan82arg/tapo-rest:latest
+        imagePullPolicy: Always
         command: ["/app/tapo-rest"]
         args: [ "/app/devices.json" ]
         ports:
