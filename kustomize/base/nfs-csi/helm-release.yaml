@@ -3,7 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta1
 kind: HelmRelease
 metadata:
   name: csi-driver-nfs
-  namespace: kube-system
+  namespace: system-csi
 spec:
   interval: 5m
   chart:
@@ -13,7 +13,7 @@ spec:
       sourceRef:
         kind: HelmRepository
         name: csi-driver-nfs
-        namespace: flux-system
+        namespace: system-gitops
       interval: 5m
   values:
     controller:
