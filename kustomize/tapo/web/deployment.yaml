@@ -19,6 +19,14 @@ spec:
       - name: tapo-web
         image: ghcr.io/hernan82arg/homeweb:latest
         imagePullPolicy: Always
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop:
+              - ALL
+          runAsNonRoot: true
+          seccompProfile:
+            type: RuntimeDefault
         ports:
         - containerPort: 3000
         env:
