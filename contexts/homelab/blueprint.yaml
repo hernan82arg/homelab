@@ -18,6 +18,7 @@ terraform:
   path: cluster/talos
 - source: core
   path: gitops/flux
+- path: tapo
 kustomize:
 - name: telemetry-base
   path: telemetry/base
@@ -146,3 +147,8 @@ kustomize:
   components:
   - redis
   - postgres/cloudnativepg
+- name: tapo-api
+  path: tapo/api
+  dependsOn:
+  - pki-base
+  force: true
