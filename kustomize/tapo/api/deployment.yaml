@@ -19,12 +19,12 @@ spec:
       - name: tapo-rest
         image: ghcr.io/hernan82arg/tapo-rest:latest
         command: ["/app/tapo-rest"]
-        args: [
-          "/app/devices.json",
-          "--port 80"
-        ]
+        args: [ "/app/devices.json" ]
         ports:
         - containerPort: 80
+        env:
+        - name: PORT
+          value: "80"
         envFrom:
         - secretRef:
             name: tapo-credentials
