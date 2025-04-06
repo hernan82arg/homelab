@@ -133,6 +133,11 @@ kustomize:
   - grafana/node
   - grafana/kubernetes
   - grafana/flux
+- name: nfs-csi
+  path: base/nfs-csi
+  force: true
+  dependsOn:
+  - pki-base
 - name: dashboard
   path: base/dashboard
   dependsOn:
