@@ -135,14 +135,19 @@ kustomize:
   - grafana/flux
 - name: nfs-csi
   path: base/nfs-csi
-  force: true
   dependsOn:
   - pki-base
+  force: true
 - name: dashboard
   path: base/dashboard
   dependsOn:
   - pki-base
   - ingress-base
+  force: true
+- name: etcd-backup
+  path: base/etcd-backup
+  dependsOn:
+  - pki-base
   force: true
 - name: data
   path: data

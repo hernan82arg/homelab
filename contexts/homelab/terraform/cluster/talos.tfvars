@@ -27,7 +27,16 @@ common_config_patches = <<EOF
 EOF
 
 // A YAML string of controlplane config patches to apply
-controlplane_config_patches = ""
+controlplane_config_patches = <<EOF
+machine:
+  features:
+    kubernetesTalosAPIAccess:
+      enabled: true
+      allowedRoles:
+        - os:etcd:backup
+      allowedKubernetesNamespaces:
+        - kube-system
+EOF
 
 // Machine config details for control planes
 controlplanes = [

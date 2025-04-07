@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: etcd-backup
+  namespace: kube-system
+spec:
+  concurrencyPolicy: Forbid
+  schedule: "12 4 * * *" # Run at 4:12 AM UTC
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: etcd-backup-talos
+          nodeSelector:
+            node-role.kubernetes.io/control-plane: ""
+          tolerations:
+            - key: "node-role.kubernetes.io/control-plane"
+              operator: "Exists"
+              effect: "NoSchedule"
+          containers:
+            - name: talosctl
+              image: ghcr.io/siderolabs/talosctl:v1.9.5
+              args:
+                - -n
+                - "$(CP_NODE_IP)"
+                - etcd
+                - snapshot
+                - /data/etcd.snapshot
+              env:
+                - name: CP_NODE_IP
+                  valueFrom:
+                    fieldRef:
+                      fieldPath: status.hostIP
+              volumeMounts:
+                - name: talos-secrets
+                  mountPath: /var/run/secrets/talos.dev
+                - name: backupdata
+                  mountPath: /data
+          volumes:
+            - name: backupdata
+              persistentVolumeClaim:
+                claimName: etcd-backup-data
+            - name: talos-secrets
+              secret:
+                secretName: etcd-backup-talos-secrets
+          restartPolicy: OnFailure
