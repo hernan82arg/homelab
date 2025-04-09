@@ -4,14 +4,14 @@ metadata:
   name: filebeat
   namespace: system-logs
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
       chart: filebeat
       version: "8.5.1"
       sourceRef:
         kind: HelmRepository
-        name: elastic/filebeat
+        name: elastic
         namespace: system-logs
   values:
     resources:

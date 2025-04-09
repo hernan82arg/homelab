@@ -4,14 +4,14 @@ metadata:
   name: elasticsearch
   namespace: system-logs
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
-      chart: elastic
+      chart: elasticsearch
       version: "8.5.1"
       sourceRef:
         kind: HelmRepository
-        name: elastic/elasticsearch
+        name: elastic
         namespace: system-logs
   values:
     antiAffinity: "soft"

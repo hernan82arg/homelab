@@ -4,14 +4,14 @@ metadata:
   name: kibana
   namespace: system-logs
 spec:
-  interval: 1h
+  interval: 5m
   chart:
     spec:
       chart: kibana
       version: "8.5.1"
       sourceRef:
         kind: HelmRepository
-        name: elastic/kibana
+        name: elastic
         namespace: system-logs
   values:
     resources:
