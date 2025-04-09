@@ -25,7 +25,7 @@ spec:
         memory: "512M"
     volumeClaimTemplate:
       accessModes: [ "ReadWriteOnce" ]
-      storageClassName: "hostpath"
+      storageClassName: "single"
       resources:
         requests:
           storage: 500M
