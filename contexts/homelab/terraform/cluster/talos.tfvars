@@ -29,6 +29,8 @@ EOF
 // A YAML string of controlplane config patches to apply
 controlplane_config_patches = <<EOF
 machine:
+  sysctls:
+    vm.max_map_count: 262144
   features:
     kubernetesTalosAPIAccess:
       enabled: true
@@ -49,6 +51,8 @@ controlplanes = [
 // A YAML string of worker config patches to apply
 worker_config_patches = <<EOF
 machine:
+    sysctls:
+        vm.max_map_count: 262144
     kubelet:
         extraMounts:
             - destination: /var/lib/openebs
