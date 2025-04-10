@@ -20,4 +20,4 @@ spec:
         memory: "100M"
       limits:
         cpu: "500m"
-        memory: "200M"
+        memory: "300M"
