@@ -21,3 +21,12 @@ spec:
       limits:
         cpu: "1000m"
         memory: "2Gi"
+    ingress:
+      enabled: true
+      className: "nginx"
+      pathtype: ImplementationSpecific
+      annotations: {}
+      hosts:
+        - host: kibana.homelab.local
+          paths:
+            - path: /
