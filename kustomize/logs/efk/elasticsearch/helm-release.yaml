@@ -15,11 +15,11 @@ spec:
         namespace: system-logs
   values:
     antiAffinity: "soft"
-    esJavaOpts: "-Xmx128m -Xms128m"
+    esJavaOpts: "-Xmx512m -Xms512m"
     resources:
       requests:
         cpu: "100m"
-        memory: "256M"
+        memory: "768M"
       limits:
         cpu: "1000m"
         memory: "1024M"
