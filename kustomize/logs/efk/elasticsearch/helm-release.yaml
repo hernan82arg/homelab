@@ -15,6 +15,9 @@ spec:
         namespace: system-logs
   values:
     antiAffinity: "soft"
+    replicas: 1
+    sysctlInitContainer:
+      enabled: false
     esJavaOpts: "-Xmx512m -Xms512m"
     resources:
       requests:
