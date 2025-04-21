@@ -149,6 +149,23 @@ kustomize:
   dependsOn:
   - pki-base
   force: true
+- name: logs
+  path: logs
+  dependsOn:
+  - csi
+  force: true
+  components:
+  - efk/elasticsearch
+  - efk/filebeat
+  - efk/kibana
+- name: local-path
+  path: base/local-path-csi
+  dependsOn:
+  - pki-base
+- name: kubevirt
+  path: kubevirt
+  dependsOn:
+  - local-path
 - name: data
   path: data
   dependsOn:
@@ -167,12 +184,3 @@ kustomize:
   dependsOn:
   - pki-base
   force: true
-- name: logs
-  path: logs
-  dependsOn:
-  - csi
-  force: true
-  components:
-  - efk/elasticsearch
-  - efk/filebeat
-  - efk/kibana

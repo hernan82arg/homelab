@@ -51,16 +51,30 @@ controlplanes = [
 // A YAML string of worker config patches to apply
 worker_config_patches = <<EOF
 machine:
-    sysctls:
-        vm.max_map_count: 262144
-    kubelet:
-        extraMounts:
-            - destination: /var/lib/openebs
-              type: bind
-              source: /var/lib/openebs
-              options:
-                - rbind
-                - rw
+  sysctls:
+    vm.max_map_count: 262144
+  kubelet:
+    extraMounts:
+      - destination: /var/lib/openebs
+        type: bind
+        source: /var/lib/openebs
+        options:
+          - rbind
+          - rw
+      - destination: /var/local-path-provisioner
+        type: bind
+        source: /var/local-path-provisioner
+        options:
+          - bind
+          - rshared
+          - rw
+  files:
+    - content: |
+        [plugins]
+          [plugins."io.containerd.grpc.v1.cri"]
+            device_ownership_from_security_context = true
+      path: /etc/cri/conf.d/20-customization.part
+      op: create
 EOF
 
 workers = [
