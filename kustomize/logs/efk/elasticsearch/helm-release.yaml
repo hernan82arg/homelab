@@ -15,12 +15,7 @@ spec:
         namespace: system-logs
   values:
     antiAffinity: "soft"
-    replicas: 1
-    extraEnvs:
-    - name: node.roles
-      value: "master,data,ingest"
-    - name: discovery.type
-      value: "single-node"
+    replicas: 2
     sysctlInitContainer:
       enabled: false
     esJavaOpts: "-Xmx512m -Xms512m"
