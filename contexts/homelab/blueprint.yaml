@@ -168,7 +168,7 @@ kustomize:
       - kibana
       - kibana/ingress
   - name: filebeat
-    path: telemetry
+    path: telemetry/base
     source: core
     dependsOn:
       - pki-base
