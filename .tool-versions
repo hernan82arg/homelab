@@ -1,2 +1,13 @@
 task 3.26.0
 checkov 3.2.341
+nodejs 22.11.0
+krew 0.4.5
+kubectl 1.32.0
+helm 3.15.1
+yq 4.44.2
+jq 1.6
+talos 1.9.5
+terraform 1.10.2
+lima 1.0.0
+colima 0.7.5
+flux2 2.3.0

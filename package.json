@@ -1,0 +1,30 @@
+{
+  "name": "homelab",
+  "version": "0.1.0",
+  "description": "Hernan's homelab",
+  "main": "index.yaml",
+  "repository": "https://github.com/hernan82arg/homelab",
+  "author": "Hernan Dominguez",
+  "private": true,
+  "devDependencies": {
+    "husky": "^9.0.0",
+    "lint-staged": "^15.0.0",
+    "prettier": "^3.0.0",
+    "prettier-plugin-sh": "^0.14.0"
+  },
+  "lint-staged": {
+    "*": [
+      "script/lint-shellcheck",
+      "script/lint-editorconfig",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "scripts": {
+    "prepare": "husky"
+  }
+}
