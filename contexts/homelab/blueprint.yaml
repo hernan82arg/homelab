@@ -158,12 +158,10 @@ kustomize:
     components:
       - elasticsearch
   - name: elasticsearch-patches
-    path: observability
+    path: observability/elasticsearch
     dependsOn:
       - elasticsearch
     force: true
-    components:
-      - elasticsearch
   - name: kibana
     path: observability
     source: core
