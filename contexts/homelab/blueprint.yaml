@@ -197,7 +197,7 @@ kustomize:
           kind: HelmRelease
           metadata:
             name: filebeat
-            namespace: system-observability
+            namespace: system-telemetry
           spec:
             values:
               volumes:
