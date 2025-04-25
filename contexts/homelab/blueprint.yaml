@@ -200,12 +200,13 @@ kustomize:
             namespace: system-telemetry
           spec:
             values:
-              volumes:
-                - name: data
-                  emptyDir: {}
-              volumeMounts:
-                - mountPath: /usr/share/filebeat/data
-                  name: data
+              daemonset:
+                volumes:
+                  - name: data
+                    emptyDir: {}
+                volumeMounts:
+                  - mountPath: /usr/share/filebeat/data
+                    name: data
   - name: local-path
     path: base/local-path-csi
     dependsOn:
