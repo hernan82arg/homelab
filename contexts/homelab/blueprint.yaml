@@ -191,22 +191,6 @@ kustomize:
     force: true
     components:
       - filebeat
-    patches:
-      - patch: |-
-          apiVersion: helm.toolkit.fluxcd.io/v2beta1
-          kind: HelmRelease
-          metadata:
-            name: filebeat
-            namespace: system-telemetry
-          spec:
-            values:
-              daemonset:
-                extraVolumes:
-                  - name: data
-                    emptyDir: {}
-                extraVolumeMounts:
-                  - mountPath: /usr/share/filebeat/data
-                    name: data
   - name: local-path
     path: base/local-path-csi
     dependsOn:
