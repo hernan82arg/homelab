@@ -201,10 +201,10 @@ kustomize:
           spec:
             values:
               daemonset:
-                extraVolumeMounts:
+                extraVolumes:
                   - name: data
                     emptyDir: {}
-                volumeMounts:
+                extraVolumeMounts:
                   - mountPath: /usr/share/filebeat/data
                     name: data
   - name: local-path
