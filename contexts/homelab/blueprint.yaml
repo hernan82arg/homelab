@@ -159,13 +159,14 @@ kustomize:
       - elasticsearch
     patches:
       - patch: |-
-          {
-            "spec": {
-              "values": {
-                "replicas": 2
-              }
-            }
-          }
+          apiVersion: helm.toolkit.fluxcd.io/v2beta1
+          kind: HelmRelease
+          metadata:
+            name: elasticsearch
+            namespace: system-observability
+          spec:
+            values:
+              replicas: 2
         target:
           kind: HelmRelease
           name: elasticsearch
