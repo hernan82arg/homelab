@@ -157,11 +157,15 @@ kustomize:
     force: true
     components:
       - elasticsearch
-  - name: elasticsearch-patches
-    path: observability/elasticsearch
-    dependsOn:
-      - elasticsearch
-    force: true
+    patches:
+      - patch: |-
+          spec:
+            values:
+              replicas: 2
+        target:
+          kind: HelmRelease
+          name: elasticsearch
+          namespace: system-observability
   - name: kibana
     path: observability
     source: core
