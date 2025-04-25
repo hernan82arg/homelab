@@ -201,7 +201,7 @@ kustomize:
           spec:
             values:
               daemonset:
-                volumes:
+                extraVolumeMounts:
                   - name: data
                     emptyDir: {}
                 volumeMounts:
