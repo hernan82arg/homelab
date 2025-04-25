@@ -159,9 +159,13 @@ kustomize:
       - elasticsearch
     patches:
       - patch: |-
-          spec:
-            values:
-              replicas: 2
+          {
+            "spec": {
+              "values": {
+                "replicas": 2
+              }
+            }
+          }
         target:
           kind: HelmRelease
           name: elasticsearch
