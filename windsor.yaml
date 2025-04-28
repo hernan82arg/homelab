@@ -5,10 +5,10 @@ contexts:
     environment:
       FLUX_SYSTEM_NAMESPACE: system-gitops
       TF_VAR_git_password: ${{ op.homelab.github_pat.token }}
-      TF_VAR_webhook_token: ${{ op.homelab.homelab_webhook_token.password }}
-      TF_VAR_tapo_username: ${{ op.homelab.tapo_bulb.username }}
-      TF_VAR_tapo_password: ${{ op.homelab.tapo_bulb.password }}
       TF_VAR_tapo_auth_password: ${{ op.homelab.tapo_bulb.auth }}
+      TF_VAR_tapo_password: ${{ op.homelab.tapo_bulb.password }}
+      TF_VAR_tapo_username: ${{ op.homelab.tapo_bulb.username }}
+      TF_VAR_webhook_token: ${{ op.homelab.homelab_webhook_token.password }}
     secrets:
       onepassword:
         vaults:
@@ -21,10 +21,10 @@ contexts:
         type: local
     cluster:
       platform: metal
-      endpoint: 192.168.1.137
+      endpoint: 192.168.1.138
       workers:
         volumes:
-        - local:/var/lib/openebs
+          - local:/var/lib/openebs
     network:
       loadbalancer_ips:
         start: 192.168.1.200

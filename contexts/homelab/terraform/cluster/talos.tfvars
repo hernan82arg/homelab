@@ -2,7 +2,7 @@
 // Module source: github.com/windsorcli/core//terraform/cluster/talos?ref=v0.3.0
 
 // The external controlplane API endpoint of the kubernetes API
-cluster_endpoint = "https://192.168.1.137:6443"
+cluster_endpoint = "https://192.168.1.138:6443"
 
 // The name of the cluster
 cluster_name = "talos"
@@ -13,13 +13,13 @@ common_config_patches = <<EOF
   "apiServer":
     "certSANs":
     - "localhost"
-    - "192.168.1.137"
+    - "192.168.1.138"
   "extraManifests":
   - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.8.7/deploy/standalone-install.yaml"
 "machine":
   "certSANs":
   - "localhost"
-  - "192.168.1.137"
+  - "192.168.1.138"
   "kubelet":
     "extraArgs":
       "rotate-server-certificates": "true"
@@ -43,8 +43,8 @@ EOF
 // Machine config details for control planes
 controlplanes = [
   {
-    "node" : "192.168.1.137",
-    "endpoint" : "192.168.1.137:50000"
+    "node" : "192.168.1.138",
+    "endpoint" : "192.168.1.138:50000"
   }
 ]
 
@@ -79,11 +79,11 @@ EOF
 
 workers = [
   {
-    "node" : "192.168.1.138",
-    "endpoint" : "192.168.1.138:50000"
+    "node" : "192.168.1.139",
+    "endpoint" : "192.168.1.139:50000"
   },
   {
-    "node" : "192.168.1.141",
-    "endpoint" : "192.168.1.141:50000"
+    "node" : "192.168.1.142",
+    "endpoint" : "192.168.1.142:50000"
   }
 ]
