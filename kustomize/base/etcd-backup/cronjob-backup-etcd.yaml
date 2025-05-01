@@ -17,7 +17,7 @@ spec:
             - key: 'node-role.kubernetes.io/control-plane'
               operator: 'Exists'
               effect: 'NoSchedule'
-          containers:
+          initContainers:
             - name: talosctl
               image: ghcr.io/siderolabs/talosctl:v1.9.5
               args:
@@ -34,6 +34,18 @@ spec:
               volumeMounts:
                 - name: talos-secrets
                   mountPath: /var/run/secrets/talos.dev
+                - name: backupdata
+                  mountPath: /data
+          containers:
+            - name: gzip
+              image: alpine:latest
+              command:
+                - /bin/sh
+                - -c
+                - |
+                  TIMESTAMP=$(date +%Y%m%d-%H%M%S)
+                  gzip -c /data/etcd.snapshot > /data/etcd-${TIMESTAMP}.snapshot.gz
+              volumeMounts:
                 - name: backupdata
                   mountPath: /data
           volumes:
