@@ -43,8 +43,7 @@ spec:
                 - /bin/sh
                 - -c
                 - |
-                  TIMESTAMP=$(date +%Y%m%d-%H%M%S)
-                  gzip -c /data/etcd.snapshot > /data/etcd-${TIMESTAMP}.snapshot.gz
+                  gzip -c /data/etcd.snapshot > /data/etcd-$(date +%Y%m%d-%H%M%S).snapshot.gz
               volumeMounts:
                 - name: backupdata
                   mountPath: /data
