@@ -5,8 +5,8 @@ metadata:
   name: nfs
 provisioner: nfs.csi.k8s.io
 parameters:
-  server: 192.168.1.140 # NFS server
-  share: /mnt/media/homelab
+  server: 192.168.1.138 # NFS server
+  share: /mnt/nfs
 reclaimPolicy: Delete
 volumeBindingMode: Immediate
 mountOptions:
