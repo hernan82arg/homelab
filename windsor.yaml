@@ -21,7 +21,7 @@ contexts:
         type: local
     cluster:
       platform: metal
-      endpoint: 192.168.1.138
+      endpoint: 192.168.1.142
       workers:
         volumes:
           - local:/var/lib/openebs
