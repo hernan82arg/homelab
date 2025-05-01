@@ -5,24 +5,24 @@ metadata:
   namespace: kube-system
 spec:
   concurrencyPolicy: Forbid
-  schedule: "12 4 * * *" # Run at 4:12 AM UTC
+  schedule: '5 * * * *' # Run at the minute  of every hour
   jobTemplate:
     spec:
       template:
         spec:
           serviceAccountName: etcd-backup-talos
           nodeSelector:
-            node-role.kubernetes.io/control-plane: ""
+            node-role.kubernetes.io/control-plane: ''
           tolerations:
-            - key: "node-role.kubernetes.io/control-plane"
-              operator: "Exists"
-              effect: "NoSchedule"
+            - key: 'node-role.kubernetes.io/control-plane'
+              operator: 'Exists'
+              effect: 'NoSchedule'
           containers:
             - name: talosctl
               image: ghcr.io/siderolabs/talosctl:v1.9.5
               args:
                 - -n
-                - "$(CP_NODE_IP)"
+                - '$(CP_NODE_IP)'
                 - etcd
                 - snapshot
                 - /data/etcd.snapshot

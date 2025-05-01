@@ -18,6 +18,7 @@ terraform:
     path: cluster/talos
   - source: core
     path: gitops/flux
+  - path: base
   - path: tapo
 kustomize:
   - name: telemetry-base
