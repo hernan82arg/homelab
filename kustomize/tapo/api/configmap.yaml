@@ -1,0 +1,20 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: tapo-devices-config
+data:
+  devices.json: |
+    {
+      "devices": [
+        {
+          "name": "room",
+          "device_type": "L530", 
+          "ip_addr": "192.168.1.133"
+        },
+        {
+          "name": "living",
+          "device_type": "L530",
+          "ip_addr": "192.168.1.135"
+        }
+      ]
+    }

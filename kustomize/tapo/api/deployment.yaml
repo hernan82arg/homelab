@@ -16,23 +16,31 @@ spec:
         app: tapo-rest
     spec:
       containers:
-      - name: tapo-rest
-        image: ghcr.io/hernan82arg/tapo-rest:latest
-        imagePullPolicy: Always
-        command: ["/app/tapo-rest"]
-        args: [ "/app/devices.json" ]
-        ports:
-        - containerPort: 80
-        env:
-        - name: PORT
-          value: "80"
-        envFrom:
-        - secretRef:
-            name: tapo-credentials
-        resources:
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
-          requests:
-            memory: "128Mi" 
-            cpu: "100m"
+        - name: tapo-rest
+          image: ghcr.io/hernan82arg/tapo-rest:latest
+          imagePullPolicy: Always
+          command: ['/app/tapo-rest']
+          args: ['/app/devices.json']
+          ports:
+            - containerPort: 80
+          env:
+            - name: PORT
+              value: '80'
+          envFrom:
+            - secretRef:
+                name: tapo-credentials
+          resources:
+            limits:
+              memory: '256Mi'
+              cpu: '500m'
+            requests:
+              memory: '128Mi'
+              cpu: '100m'
+          volumeMounts:
+            - name: config-volume
+              mountPath: /app/devices.json
+              subPath: devices.json
+      volumes:
+        - name: config-volume
+          configMap:
+            name: tapo-devices-config
