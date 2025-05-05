@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: nginx-config
+  namespace: web-server
+data:
+  nginx.conf: |
+    user  nginx;
+    worker_processes  auto;
+
+    error_log  /dev/stdout warn;
+    pid        /var/run/nginx.pid;
+
+    events {
+        worker_connections  1024;
+    }
+
+    http {
+        include       /etc/nginx/mime.types;
+        default_type  application/octet-stream;
+
+        sendfile        on;
+        keepalive_timeout  65;
+
+        server {
+            listen 80;
+            server_name _;
+
+            location / {
+                root /mnt/nfs;
+                autoindex on;  # Enables directory listing
+                index index.html;
+            }
+
+            error_page 404 /404.html;
+            location = /404.html {
+                root /mnt/nfs;
+            }
+        }
+    }

@@ -1,0 +1,19 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: web-repo
+  namespace: web-server
+spec:
+  ingressClassName: nginx
+  rules:
+    - host: web-repo.cluster.local
+      http:
+        paths:
+          - backend:
+              service:
+                name: image-web-server
+                port:
+                  number: 80
+            path: /
+            pathType: Prefix

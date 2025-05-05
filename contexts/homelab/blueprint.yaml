@@ -249,3 +249,9 @@ kustomize:
     dependsOn:
       - pki-base
     force: true
+  - name: web-repo
+    path: web-repo
+    dependsOn:
+      - pki-base
+      - ingress-base
+    force: true
