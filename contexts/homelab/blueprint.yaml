@@ -156,15 +156,7 @@ kustomize:
     dependsOn:
       - pki-base
     patches:
-      - patch: |
-          apiVersion: helm.toolkit.fluxcd.io/v2beta1
-          kind: HelmRelease
-          metadata:
-            name: elasticsearch
-            namespace: system-observability
-          spec:
-            values:
-              replicas: 2
+      - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: elasticsearch\n  namespace: system-observability\nspec:\n  values:\n    replicas: 2\n"
         target:
           kind: HelmRelease
           namespace: system-observability
@@ -179,25 +171,12 @@ kustomize:
       - pki-base
       - elasticsearch
       - ingress-base
+    patches:
+      - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: kibana\n  namespace: system-observability\nspec:\n  values:\n    nodeSelector:\n      node-role.kubernetes.io/control-plane: \"\"\n    tolerations:\n      - key: \"node-role.kubernetes.io/control-plane\"\n        operator: \"Exists\"\n        effect: \"NoSchedule\"\n"
     force: true
     components:
       - kibana
       - kibana/ingress
-    patches:
-      - patch: |
-          apiVersion: helm.toolkit.fluxcd.io/v2beta1
-          kind: HelmRelease
-          metadata:
-            name: kibana
-            namespace: system-observability
-          spec:
-            values:
-              nodeSelector:
-                node-role.kubernetes.io/control-plane: ""
-              tolerations:
-                - key: "node-role.kubernetes.io/control-plane"
-                  operator: "Exists"
-                  effect: "NoSchedule"
   - name: filebeat
     path: telemetry/base
     source: core
@@ -205,21 +184,7 @@ kustomize:
       - pki-base
       - elasticsearch
     patches:
-      - patch: |
-          apiVersion: helm.toolkit.fluxcd.io/v2beta1
-          kind: HelmRelease
-          metadata:
-            name: filebeat
-            namespace: system-telemetry
-          spec:
-            values:
-              resources:
-                requests:
-                  cpu: "200m"
-                  memory: "500M"
-                limits:
-                  cpu: "1000m"
-                  memory: "1500M"
+      - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: filebeat\n  namespace: system-telemetry\nspec:\n  values:\n    resources:\n      requests:\n        cpu: \"200m\"\n        memory: \"500M\"\n      limits:\n        cpu: \"1000m\"\n        memory: \"1500M\"\n"
     force: true
     components:
       - filebeat

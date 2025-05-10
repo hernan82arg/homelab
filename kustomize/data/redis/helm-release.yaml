@@ -8,14 +8,15 @@ spec:
   chart:
     spec:
       chart: redis
-      version: "20.11.4"
+      version: '20.11.4'
       sourceRef:
         kind: HelmRepository
         name: bitnami-redis
         namespace: data
   values:
     auth:
-      password: "${REDIS_PASSWORD}"
+      existingSecret: redis-password
+      existingSecretPasswordKey: password
     replica:
       replicaCount: 1
     persistence:
