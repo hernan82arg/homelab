@@ -4,6 +4,7 @@ contexts:
     blueprint: full
     environment:
       FLUX_SYSTEM_NAMESPACE: system-gitops
+      REDIS_PASSWORD: ${{ op.homelab.redis_password.password }}
       TF_VAR_git_password: ${{ op.homelab.github_pat.token }}
       TF_VAR_tapo_auth_password: ${{ op.homelab.tapo_bulb.auth }}
       TF_VAR_tapo_password: ${{ op.homelab.tapo_bulb.password }}
