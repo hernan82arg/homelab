@@ -1,0 +1,108 @@
+# General configuration
+add_newline = true
+command_timeout = 1000
+
+
+format = """
+$custom\
+$directory\
+$git_branch\
+$git_status\
+$docker_context\
+$kubernetes\
+$aws\
+$azure\
+$line_break\
+$character"""
+
+right_format = """
+$python\
+"""
+
+# Replace the "❯" symbol in the prompt with "➜"
+[character]
+success_symbol = "[➜](fg:37)"  # Solarized cyan
+error_symbol = "[➜](fg:160)"   # Solarized red
+
+[cmd_duration]
+disabled = true
+
+# Disable the package module, hiding it from the prompt completely
+[package]
+disabled = true
+
+# Directory configuration
+[directory]
+truncate_to_repo = true
+style = "fg:33"  # Solarized blue
+format = "[$path]($style) "
+fish_style_pwd_dir_length = 1
+
+# Git configuration - remove "on" prefix and truncate branch name
+[git_branch]
+format = "[$symbol$branch]($style) "
+style = "fg:61"  # Solarized violet
+truncation_length = 20
+truncation_symbol = "…"
+
+[git_status]
+ahead = '⇡${count}'
+diverged = '⇕⇡${ahead_count}⇣${behind_count}'
+behind = '⇣${count}'
+style = "fg:160"  # Solarized red
+
+# AWS configuration - remove "on" prefix
+[aws]
+format = '[aws:\(($profile/)($region)\)]($style)'
+style = "fg:136"  # Solarized yellow
+force_display = true
+[aws.region_aliases]
+us-east-1 = 'ue1'
+us-east-2 = 'ue2'
+us-west-1 = 'uw1'
+us-west-2 = 'uw2'
+eu-west-1 = 'ew1'
+eu-central-1 = 'ec1'
+
+# Azure configuration - remove "on" prefix
+[azure]
+format = '[azure:($subscription)]($style) '
+style = "fg:33"  # Solarized blue
+
+# Kubernetes configuration
+[kubernetes]
+format = '[k8s:(\($context/$namespace\))]($style) '
+disabled = false
+style = "fg:37"  # Solarized cyan
+
+# Docker context
+[docker_context]
+format = "[$symbol$context]($style) "
+style = "fg:33"  # Solarized blue
+symbol = "🐋 "
+only_with_files = true
+detect_files = ["docker-compose.yml", "docker-compose.yaml", "Dockerfile"]
+detect_folders = []
+disabled = false
+
+# Windsor configuration
+[custom.windsor]
+command = "windsor context get"
+when = "which windsor"
+format = '[windsor:(\($output\))]($style) '
+style = "fg:162"  # Brighter Solarized magenta
+
+# Packer configuration
+[custom.packer]
+command = "echo $CS_AMI_NAME"
+when = "test -n \"$CS_AMI_NAME\""
+format = '[packer:(\($output\))]($style) '
+style = "fg:64"  # Solarized green
+
+# Python configuration
+[python]
+format = '[python:(\($virtualenv\))]($style) '
+style = "fg:64"  # Solarized green
+detect_extensions = ["py"]
+detect_files = ["requirements.txt", "pyproject.toml", "setup.py", "Pipfile", "tox.ini"]
+detect_folders = [".venv", "venv", ".tox"]

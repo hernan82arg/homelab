@@ -71,8 +71,8 @@ kustomize:
     force: true
     components:
       - metallb/layer2
-  - name: ingress-base
-    path: ingress/base
+  - name: ingress
+    path: ingress
     source: core
     dependsOn:
       - pki-resources
@@ -117,7 +117,7 @@ kustomize:
     path: gitops/flux
     source: core
     dependsOn:
-      - ingress-base
+      - ingress
     force: true
     components:
       - webhook
@@ -126,7 +126,7 @@ kustomize:
     source: core
     dependsOn:
       - csi
-      - ingress-base
+      - ingress
     components:
       - grafana
       - grafana/ingress
@@ -143,7 +143,7 @@ kustomize:
     path: base/dashboard
     dependsOn:
       - pki-base
-      - ingress-base
+      - ingress
     force: true
   - name: etcd-backup
     path: base/etcd-backup
@@ -170,7 +170,7 @@ kustomize:
     dependsOn:
       - pki-base
       - elasticsearch
-      - ingress-base
+      - ingress
     patches:
       - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: kibana\n  namespace: system-observability\nspec:\n  values:\n    nodeSelector:\n      node-role.kubernetes.io/control-plane: \"\"\n    tolerations:\n      - key: \"node-role.kubernetes.io/control-plane\"\n        operator: \"Exists\"\n        effect: \"NoSchedule\"\n"
     force: true
@@ -218,5 +218,5 @@ kustomize:
     path: web-repo
     dependsOn:
       - pki-base
-      - ingress-base
+      - ingress
     force: true
