@@ -13,13 +13,13 @@
 
 ### Extra Hardware
 
-- 1 Dell Optiplex 7040 (i5 4CPU, 8Gb, 1Tb SSD) as NFS/Plex/Samba
-- 1 WD 4Tb as extra storage
-- 1 Raspberry Pi 4
-- 1 Intel NUC (i7 16 Cores, 32Gb, 1Tb SSD)
-- 1 8 Port Switch 1Gbps
-- 1 4 Port KVM
-- 1 10" Screen
+- Dell Optiplex 7040 (i5 4CPU, 32Gb, 1Tb SSD) as NFS/Plex/Samba
+- WD 4Tb as extra storage
+- Raspberry Pi 4 as Tailscale exit node
+- Intel NUC (i7 16 Cores, 32Gb, 1Tb SSD)
+- 8 Port Switch 1Gbps
+- 4 Port KVM
+- 10" Screen
 
 All mounted on a [DeskPi RackMate T1](https://deskpi.com/products/deskpi-rackmate-t1-2)
 

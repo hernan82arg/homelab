@@ -113,6 +113,36 @@ kustomize:
       - external-dns
       - external-dns/coredns
       - external-dns/ingress
+    patches:
+      - patch: |
+          apiVersion: helm.toolkit.fluxcd.io/v2beta1
+          kind: HelmRelease
+          metadata:
+            name: coredns
+            namespace: system-dns
+          spec:
+            values:
+              nodeSelector:
+                node-role.kubernetes.io/control-plane: ""
+              tolerations:
+                - key: "node-role.kubernetes.io/control-plane"
+                  operator: "Exists"
+                  effect: "NoSchedule"
+      - patch: |
+          apiVersion: helm.toolkit.fluxcd.io/v2beta1
+          kind: HelmRelease
+          metadata:
+            name: external-dns
+            namespace: system-dns
+          spec:
+            values:
+              nodeSelector:
+                node-role.kubernetes.io/control-plane: ""
+              tolerations:
+                - key: "node-role.kubernetes.io/control-plane"
+                  operator: "Exists"
+                  effect: "NoSchedule"
+
   - name: gitops
     path: gitops/flux
     source: core
