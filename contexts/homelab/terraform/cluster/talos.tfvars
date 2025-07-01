@@ -87,3 +87,5 @@ workers = [
     "endpoint" : "192.168.1.148:50000"
   }
 ]
+
+talos_version = "1.10.4"

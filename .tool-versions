@@ -6,7 +6,7 @@ kubectl 1.32.0
 helm 3.15.1
 yq 4.44.2
 jq 1.6
-talos 1.9.5
+talos 1.10.4
 terraform 1.10.2
 lima 1.0.0
 colima 0.7.5
