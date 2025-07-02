@@ -18,8 +18,11 @@ terraform:
     path: cluster/talos
   - source: core
     path: gitops/flux
+    destroy: false
   - path: base
+    destroy: false
   - path: tapo
+    destroy: false
 kustomize:
   - name: telemetry-base
     path: telemetry/base
