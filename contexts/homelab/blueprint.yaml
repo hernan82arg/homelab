@@ -196,7 +196,16 @@ kustomize:
     dependsOn:
       - pki-base
     patches:
-      - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: elasticsearch\n  namespace: system-observability\nspec:\n  values:\n    replicas: 2\n"
+      - patch: |
+          apiVersion: helm.toolkit.fluxcd.io/v2beta1
+          kind: HelmRelease
+          metadata:
+            name: elasticsearch
+            namespace: system-observability
+          spec:
+            timeout: 15m
+            values:
+              replicas: 2
         target:
           kind: HelmRelease
           namespace: system-observability
@@ -212,7 +221,20 @@ kustomize:
       - elasticsearch
       - ingress
     patches:
-      - patch: "apiVersion: helm.toolkit.fluxcd.io/v2beta1\nkind: HelmRelease\nmetadata:\n  name: kibana\n  namespace: system-observability\nspec:\n  values:\n    nodeSelector:\n      node-role.kubernetes.io/control-plane: \"\"\n    tolerations:\n      - key: \"node-role.kubernetes.io/control-plane\"\n        operator: \"Exists\"\n        effect: \"NoSchedule\"\n"
+      - patch: |
+          apiVersion: helm.toolkit.fluxcd.io/v2beta1
+          kind: HelmRelease
+          metadata:
+            name: kibana
+            namespace: system-observability
+          spec:
+            values:
+              nodeSelector:
+                node-role.kubernetes.io/control-plane: ""
+              tolerations:
+                - key: "node-role.kubernetes.io/control-plane"
+                  operator: "Exists"
+                  effect: "NoSchedule"
     force: true
     components:
       - kibana
