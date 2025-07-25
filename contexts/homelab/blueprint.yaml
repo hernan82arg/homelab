@@ -30,6 +30,8 @@ kustomize:
     components:
       - prometheus
       - prometheus/flux
+      - fluentbit
+      - fluentbit/prometheus
   - name: telemetry-resources
     path: telemetry/resources
     source: core
