@@ -21,6 +21,7 @@ contexts:
       backend:
         type: local
     cluster:
+      enabled: true
       platform: metal
       endpoint: 192.168.1.142
       workers:
