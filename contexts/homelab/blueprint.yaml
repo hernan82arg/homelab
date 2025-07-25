@@ -176,8 +176,9 @@ kustomize:
       - quickwit
       - quickwit/pvc
       - fluentd
-      - fluentd/quickwit
-      - fluentd/stdout
+      - fluentd/filters/otel
+      - fluentd/outputs/quickwit
+      - fluentd/outputs/stdout
       - grafana
       - grafana/ingress
       - grafana/prometheus
