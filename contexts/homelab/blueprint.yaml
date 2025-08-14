@@ -12,7 +12,7 @@ sources:
   - name: core
     url: github.com/windsorcli/core
     ref:
-      branch: main
+      tag: v0.5.0
 terraform:
   - source: core
     path: cluster/talos
