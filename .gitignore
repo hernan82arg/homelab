@@ -1,4 +1,5 @@
 node_modules
+.DS_Store
 # managed by windsor cli
 .windsor/
 .volumes/
