@@ -10,12 +10,12 @@ data:
         {
           "name": "room",
           "device_type": "L530", 
-          "ip_addr": "192.168.1.51"
+          "ip_addr": "192.168.1.37"
         },
         {
           "name": "living",
           "device_type": "L530",
-          "ip_addr": "192.168.1.48"
+          "ip_addr": "192.168.1.36"
         }
       ]
     }
