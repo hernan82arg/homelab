@@ -21,6 +21,8 @@ spec:
             - name: talosctl
               image: ghcr.io/siderolabs/talosctl:v1.9.5
               args:
+                - --talosconfig=/var/run/secrets/talos.dev/talosconfig
+                - --endpoints=$(CP_NODE_IP)
                 - -n
                 - '$(CP_NODE_IP)'
                 - etcd
