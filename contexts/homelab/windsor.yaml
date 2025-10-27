@@ -23,7 +23,7 @@ cluster:
   enabled: true
   platform: metal
   driver: talos
-  endpoint: 192.168.1.49
+  endpoint: 192.168.1.60
   workers:
     volumes:
       - local:/var/lib/openebs
