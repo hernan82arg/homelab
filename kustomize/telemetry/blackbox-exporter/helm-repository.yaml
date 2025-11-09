@@ -1,0 +1,9 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta2
+kind: HelmRepository
+metadata:
+  name: blackbox-exporter
+  namespace: system-telemetry
+spec:
+  type: oci
+  url: oci://ghcr.io/prometheus-community/charts/prometheus-blackbox-exporter
+  interval: 1h

@@ -1,0 +1,15 @@
+apiVersion: helm.toolkit.fluxcd.io/v2beta1
+kind: HelmRelease
+metadata:
+  name: blackbox-exporter
+  namespace: system-telemetry
+spec:
+  interval: 5m
+  chart:
+    spec:
+      chart: blackbox-exporter
+      version: '11.4.2'
+      sourceRef:
+        kind: HelmRepository
+        name: blackbox-exporter
+        namespace: system-telemetry

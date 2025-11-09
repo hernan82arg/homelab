@@ -236,3 +236,8 @@ kustomize:
       - pki-base
       - ingress
     force: true
+  - name: blackbox-exporter
+    path: telemetry/blackbox-exporter
+    dependsOn:
+      - telemetry-resources
+    force: true
