@@ -9,3 +9,9 @@ variable "onepassword_credentials" {
   description = "1Password credentials"
   sensitive   = true
 }
+
+variable "onepassword_token" {
+  type        = string
+  description = "1Password token"
+  sensitive   = true
+}

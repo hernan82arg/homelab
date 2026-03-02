@@ -19,3 +19,19 @@ resource "kubernetes_manifest" "op" {
     "type" = "Opaque"
   }
 }
+
+resource "kubernetes_manifest" "op_token" {
+  computed_fields = ["stringData"]
+  manifest = {
+    "apiVersion" = "v1"
+    "kind"       = "Secret"
+    "metadata" = {
+      "name"      = "onepassword-token"
+      "namespace" = kubernetes_namespace.onepassword.metadata[0].name
+    }
+    "stringData" = {
+      "token" = base64encode(var.onepassword_token)
+    }
+    "type" = "Opaque"
+  }
+}
