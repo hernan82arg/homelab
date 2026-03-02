@@ -16,17 +16,3 @@ secrets:
       homelab:
         url: my.1password.com
         name: Personal
-terraform:
-  enabled: true
-  backend:
-    type: local
-cluster:
-  enabled: true
-  platform: metal
-  driver: talos
-  endpoint: 192.168.1.59
-  workers:
-    volumes:
-      - local:/var/lib/openebs
-dns:
-  domain: homelab.local
