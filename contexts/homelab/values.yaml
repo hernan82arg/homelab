@@ -1,5 +1,7 @@
 blueprint: full
+platform: metal
 network:
+  loadbalancer_driver: metallb
   loadbalancer_ips:
     start: 192.168.1.200
     end: 192.168.1.210
@@ -9,7 +11,6 @@ terraform:
     type: local
 cluster:
   enabled: true
-  platform: metal
   driver: talos
   endpoint: 192.168.1.59
   workers:
