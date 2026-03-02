@@ -2,6 +2,7 @@ blueprint: full
 platform: metal
 network:
   loadbalancer_driver: metallb
+  loadbalancer_mode: arp
   loadbalancer_ips:
     start: 192.168.1.200
     end: 192.168.1.210
