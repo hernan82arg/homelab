@@ -23,10 +23,10 @@
 # git_auth_secret = "flux-system"
 
 # The git user to use to authenticte with the git provider
-git_username = "local"
+# git_username = "local"
 
 # The git password or PAT used to authenticte with the git provider
-git_password = "local"
+# git_password = "local"
 
 # The token to use for the webhook
-webhook_token = "abcdef123456"
+# webhook_token = "abcdef123456"

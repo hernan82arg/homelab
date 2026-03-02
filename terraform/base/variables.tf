@@ -3,3 +3,9 @@ variable "redis_password" {
   description = "Redis password"
   sensitive   = true
 }
+
+variable "onepassword_credentials" {
+  type        = string
+  description = "1Password credentials"
+  sensitive   = true
+}

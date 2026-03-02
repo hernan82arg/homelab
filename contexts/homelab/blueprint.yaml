@@ -12,7 +12,7 @@ sources:
   - name: core
     url: github.com/windsorcli/core
     ref:
-      tag: v0.5.2
+      branch: main
 terraform:
   - source: core
     path: cluster/talos
@@ -188,6 +188,10 @@ kustomize:
       - grafana/kubernetes
       - grafana/flux
       - grafana/quickwit
+  - name: 1password
+    path: base/1password
+    dependsOn:
+      - pki-base
   - name: nfs-csi
     path: base/nfs-csi
     dependsOn:

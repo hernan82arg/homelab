@@ -1,0 +1,10 @@
+---
+apiVersion: source.toolkit.fluxcd.io/v1
+kind: HelmRepository
+metadata:
+  name: onepassword
+  namespace: system-gitops
+spec:
+  interval: 10m
+  url: https://1password.github.io/connect-helm-charts/
+  timeout: 3m
