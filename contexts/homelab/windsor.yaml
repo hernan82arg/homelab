@@ -1,6 +1,5 @@
 id: w0zn8hbn
 provider: talos
-blueprint: full
 environment:
   FLUX_SYSTEM_NAMESPACE: system-gitops
   TF_VAR_git_password: ${{ op.homelab.github_pat.token }}
