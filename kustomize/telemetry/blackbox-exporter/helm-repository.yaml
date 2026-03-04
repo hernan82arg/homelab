@@ -4,6 +4,5 @@ metadata:
   name: blackbox-exporter
   namespace: system-telemetry
 spec:
-  type: oci
-  url: oci://ghcr.io/prometheus-community/charts/prometheus-blackbox-exporter
+  url: https://prometheus-community.github.io/helm-charts
   interval: 1h
