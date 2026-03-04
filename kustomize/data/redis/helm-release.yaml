@@ -7,7 +7,7 @@ spec:
   interval: 5m
   chart:
     spec:
-      chart: redis
+      chart: redis-enterprise-operator
       version: '8.0.10-23'
       sourceRef:
         kind: HelmRepository
