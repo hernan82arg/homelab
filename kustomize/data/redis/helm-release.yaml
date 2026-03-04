@@ -8,26 +8,8 @@ spec:
   chart:
     spec:
       chart: redis
-      version: '20.11.4'
+      version: '8.0.10-23'
       sourceRef:
         kind: HelmRepository
-        name: bitnami-redis
+        name: redis
         namespace: data
-  values:
-    auth:
-      existingSecret: redis-password
-      existingSecretPasswordKey: password
-    replica:
-      replicaCount: 1
-    persistence:
-      enabled: true
-      size: 8Gi
-    resources:
-      requests:
-        memory: 256Mi
-        cpu: 100m
-      limits:
-        memory: 1Gi
-        cpu: 500m
-    metrics:
-      enabled: true

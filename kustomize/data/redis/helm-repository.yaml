@@ -1,9 +1,8 @@
 apiVersion: source.toolkit.fluxcd.io/v1
 kind: HelmRepository
 metadata:
-  name: bitnami-redis
+  name: redis
   namespace: data
 spec:
-  type: oci
-  url: oci://registry-1.docker.io/bitnamicharts
+  url: https://helm.redis.io/
   interval: 1h
