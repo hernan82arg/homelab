@@ -2,7 +2,7 @@ apiVersion: kyverno.io/v2
 kind: PolicyException
 metadata:
   name: allow-blackbox-exporter-no-digest
-  namespace: system-telemetry
+  namespace: system-policy
 spec:
   exceptions:
   - policyName: require-image-digest
