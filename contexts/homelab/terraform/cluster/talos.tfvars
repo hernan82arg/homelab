@@ -64,7 +64,7 @@ machine:
       allowedRoles:
       - os:etcd:backup
       allowedKubernetesNamespaces:
-      - default
+      - kube-system
 EOF
 
 # A YAML string of worker config patches to apply. Can be an empty string or valid YAML.
