@@ -3,3 +3,4 @@ kind: Component
 resources:
   - helm-repository.yaml
   - helm-release.yaml
+  - probes.yaml

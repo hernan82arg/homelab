@@ -1,0 +1,17 @@
+---
+apiVersion: monitoring.coreos.com/v1
+kind: Probe
+metadata:
+  name: blackbox-internal
+  namespace: system-telemetry
+spec:
+  interval: 30s
+  module: http_2xx
+  prober:
+    url: blackbox-exporter-prometheus-blackbox-exporter.system-telemetry.svc.cluster.local:9115
+    path: /probe
+  targets:
+    staticConfig:
+      static:
+        - https://grafana.homelab.local
+        - http://web-repo.homelab.local
