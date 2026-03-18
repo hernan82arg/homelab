@@ -11,28 +11,28 @@ talos_version = "1.10.6"
 cluster_name = "talos"
 
 # The external controlplane API endpoint of the kubernetes API.
-cluster_endpoint = "https://192.168.1.59:6443"
+cluster_endpoint = "https://192.168.1.39:6443"
 
 # A list of machine configuration details for control planes.
 controlplanes = [{
-  endpoint  = "192.168.1.59:50000"
-  hostname  = "controlplane-1"
+  endpoint  = "192.168.1.39:50000"
+  hostname  = "cp-1"
   hostports = []
-  node      = "192.168.1.59"
+  node      = "192.168.1.39"
 }]
 
 # A list of machine configuration details
 workers = [{
-  endpoint  = "192.168.1.50:50000"
-  hostname  = "worker-1"
+  endpoint  = "192.168.1.51:50000"
+  hostname  = "worker1"
   hostports = ["8080:30080/tcp", "8443:30443/tcp", "9292:30292/tcp", "8053:30053/udp"]
-  node      = "192.168.1.50"
+  node      = "192.168.1.51"
 },
 {
-  endpoint  = "192.168.1.53:50000"
-  hostname  = "worker-2"
+  endpoint  = "192.168.1.63:50000"
+  hostname  = "worker2"
   hostports = ["8080:30080/tcp", "8443:30443/tcp", "9292:30292/tcp", "8053:30053/udp"]
-  node      = "192.168.1.53"
+  node      = "192.168.1.63"
 }]
 
 # A YAML string of common config patches to apply. Can be an empty string or valid YAML.
@@ -41,13 +41,13 @@ common_config_patches = <<EOF
   "apiServer":
     "certSANs":
     - "localhost"
-    - "192.168.1.59"
+    - "192.168.1.39"
   "extraManifests":
   - "https://raw.githubusercontent.com/alex1989hu/kubelet-serving-cert-approver/v0.8.7/deploy/standalone-install.yaml"
 "machine":
   "certSANs":
   - "localhost"
-  - "192.168.1.59"
+  - "192.168.1.39"
   "kubelet":
     "extraArgs":
       "rotate-server-certificates": "true"
