@@ -10,7 +10,7 @@ terraform:
 cluster:
   enabled: true
   driver: talos
-  endpoint: 192.168.1.39
+  endpoint: 192.168.1.27
   workers:
     volumes:
       - local:/var/lib/openebs
