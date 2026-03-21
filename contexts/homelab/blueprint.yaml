@@ -219,6 +219,7 @@ kustomize:
     path: tapo/api
     dependsOn:
       - pki-base
+      - nfs-csi
     force: true
   - name: tapo-web
     path: tapo/web
@@ -228,7 +229,7 @@ kustomize:
   - name: web-repo
     path: web-repo
     dependsOn:
-      - pki-base
+      - nfs-csi
       - ingress
     force: true
   - name: blackbox-exporter
