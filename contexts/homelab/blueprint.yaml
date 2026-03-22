@@ -237,3 +237,8 @@ kustomize:
     dependsOn:
       - telemetry-resources
     force: true
+  - name: actions-runner-controller
+    path: actions-runner-controller
+    dependsOn:
+      - 1password
+    force: true

@@ -1,0 +1,92 @@
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: RunnerDeployment
+metadata:
+  name: homelab-generic-runner
+  namespace: github
+spec:
+  replicas: 3
+  template:
+    spec:
+      organization: hernan82arg
+      labels:
+        - self-hosted
+        - homelab
+        - generic
+      serviceAccountName: homelab-actions-runner
+      volumes:
+        - name: shared-bin
+          emptyDir: {} # Shared volume for AWS CLI, 1Password CLI, and dependencies
+
+      initContainers:
+        - name: setup-awscli
+          image: ubuntu:24.04
+          securityContext:
+            runAsUser: 0 # Root privileges for installation
+          volumeMounts:
+            - name: shared-bin
+              mountPath: /opt/shared # Shared volume for binaries
+          command:
+            - sh
+            - -c
+            - |
+              set -e  # Exit if any command fails
+              echo "Installing AWS CLI and 1Password CLI..."
+
+              export DEBIAN_FRONTEND=noninteractive
+              apt-get update && apt-get install -y wget unzip curl gpg python3-pip
+
+              # Install AWS CLI via pip (instead of apt-get)
+              pip3 install awscli botocore --target /opt/shared/python-packages
+              ln -s /opt/shared/python-packages/bin/aws /opt/shared/aws
+
+              # Install 1Password CLI
+              wget https://cache.agilebits.com/dist/1P/op2/pkg/v2.29.0/op_linux_amd64_v2.29.0.zip -O /tmp/op.zip
+              unzip /tmp/op.zip -d /tmp
+              mv /tmp/op /opt/shared/op
+              chmod +x /opt/shared/op
+              # Ensure symlinks exist in /usr/local/bin
+              ln -sf /opt/shared/op /usr/local/bin/op
+              ln -sf /opt/shared/python-packages/bin/aws /usr/local/bin/aws
+
+              echo "AWS CLI (pip), Python (botocore), and 1Password CLI installed successfully"
+              ls -l /usr/local/bin/op /usr/local/bin/aws  # Debugging step
+              #FLUX
+
+      containers:
+        - name: runner
+          image: summerwind/actions-runner:latest
+          securityContext:
+            runAsUser: 1000 # Drop privileges for runner container
+          volumeMounts:
+            - name: shared-bin
+              mountPath: /opt/shared # Ensure shared binaries are available
+          env:
+            - name: PATH
+              value: "/opt/shared:/opt/shared/python-packages/bin:/usr/local/bin:/usr/bin:/bin"
+            - name: PYTHONPATH
+              value: "/opt/shared/python-packages"
+            - name: OP_SERVICE_ACCOUNT_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: onepassword-token
+                  key: credential
+
+---
+apiVersion: actions.summerwind.dev/v1alpha1
+kind: HorizontalRunnerAutoscaler
+metadata:
+  name: homelab-generic-runner
+  namespace: github
+spec:
+  scaleDownDelaySecondsAfterScaleOut: 300
+  scaleTargetRef:
+    kind: RunnerDeployment
+    name: homelab-generic-runner
+  minReplicas: 1
+  maxReplicas: 15
+  metrics:
+    - type: PercentageRunnersBusy
+      scaleUpThreshold: "0.75"
+      scaleDownThreshold: "0.25"
+      scaleUpFactor: "2"
+      scaleDownFactor: "0.5"

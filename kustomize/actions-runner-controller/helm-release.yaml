@@ -1,0 +1,23 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2
+kind: HelmRelease
+metadata:
+  name: actions-runner-controller
+  namespace: github
+spec:
+  interval: 5m
+  chart:
+    spec:
+      # renovate: registryUrl=https://actions-runner-controller.github.io/actions-runner-controller
+      chart: actions-runner-controller
+      version: 0.23.7
+      sourceRef:
+        kind: HelmRepository
+        name: actions-runner-controller
+        namespace: system-gitops
+      interval: 5m
+  values:
+    syncPeriod: 5m
+    authSecret:
+      create: true
+      name: controller-manager-secret
