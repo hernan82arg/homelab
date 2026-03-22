@@ -1,0 +1,95 @@
+# Package version matrix for general-utility Docker image
+# This file defines the versions of tools and packages used in the Dockerfile
+
+versions:
+  # System packages (apt) - only packages we actually install
+  system:
+    curl: "latest"
+    wget: "latest"
+    git: "latest"
+    unzip: "latest"
+    jq: "latest"
+    vim: "latest"
+    nano: "latest"
+    tree: "latest"
+    htop: "latest"
+    net-tools: "latest"
+    iputils-ping: "latest"
+    dnsutils: "latest"
+    ca-certificates: "latest"
+    gnupg: "latest"
+    lsb-release: "latest"
+    openssh-client: "latest"
+
+  # Cloud and Infrastructure Tools
+  cloud_tools:
+    terraform: "1.10.0"
+    aws_cli: "2.15.0"
+    kubectl: "v1.33.0"
+    go_task: "latest"
+    yq: "v4.47.2"
+
+  # Python packages as requirements.txt format
+  # This gets rendered into a requirements.txt file and then pip installed
+  # So all of the standard requirements.txt syntax should be supported here.
+  python_requirements: |
+    ansible==12.0.0
+    ansible-core==2.19.2
+    boto3==1.35.0
+    botocore==1.35.0
+    kubernetes==29.0.0
+    openshift==0.13.2
+    jmespath==1.0.1
+    netaddr==0.10.1
+    dnspython==2.4.2
+    pywinrm==0.4.3
+    pypsrp==0.7.0
+    packaging==24.0
+    requests==2.32.0
+    xmltodict==0.13.0
+    oras==0.1.25
+    cryptography==43.0.0
+    cffi==1.17.0
+
+  # Ansible collections
+  ansible_collections:
+    - name: "community.general"
+      version: "latest"
+    - name: "community.crypto"
+      version: "latest"
+    - name: "ansible.posix"
+      version: "latest"
+    - name: "kubernetes.core"
+      version: "latest"
+    - name: "kubevirt.core"
+      version: "latest"
+    - name: "amazon.aws"
+      version: "latest"
+    - name: "community.aws"
+      version: "latest"
+    - name: "ansible.windows"
+      version: "latest"
+    - name: "community.windows"
+      version: "latest"
+
+  # Security and Authentication Tools
+  security:
+    onepassword_cli: "2.29.0"
+
+  # GitHub Actions Runner
+  github_actions:
+    runner: "latest" # Dynamically fetched from GitHub API
+
+# Architecture support matrix
+architectures:
+  supported:
+    - "amd64"
+    - "arm64"
+
+# Environment configuration
+environment:
+  python_venv_path: "/opt/venv"
+  working_directory: "/home/runner/workspace"
+  default_shell: "/bin/bash"
+  runner_user: "runner"
+  runner_uid: 1000
