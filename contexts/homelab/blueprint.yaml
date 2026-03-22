@@ -238,12 +238,12 @@ kustomize:
       - telemetry-resources
     force: true
   - name: actions-runner-controller
-    path: actions-runner-controller/controller
+    path: github-actions-runner/controller
     dependsOn:
       - 1password
     force: true
   - name: actions-runners
-    path: actions-runner-controller/runners
+    path: github-actions-runner/runners
     dependsOn:
       - actions-runner-controller
     force: true
