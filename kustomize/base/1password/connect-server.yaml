@@ -18,6 +18,14 @@ spec:
   values:
     operator:
       create: true
+      logLevel: error
+      token:
+        name: onepassword-token
+        key: token
     connect:
+      api:
+        logLevel: warn
+      sync:
+        logLevel: warn
       credentialsName: op-credentials
       credentialsKey: 1password-credentials.json
