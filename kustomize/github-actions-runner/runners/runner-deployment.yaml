@@ -53,15 +53,13 @@ spec:
 
       containers:
         - name: runner
-          image: summerwind/actions-runner:latest
+          image: summerwind/actions-runner-dind:latest
           securityContext:
             runAsUser: 1000 # Drop privileges for runner container
           volumeMounts:
             - name: shared-bin
               mountPath: /opt/shared # Ensure shared binaries are available
           env:
-            - name: DOCKER_HOST
-              value: tcp://localhost:2375
             - name: PATH
               value: "/opt/shared:/opt/shared/python-packages/bin:/usr/local/bin:/usr/bin:/bin"
             - name: PYTHONPATH
@@ -71,13 +69,6 @@ spec:
                 secretKeyRef:
                   name: onepassword-token
                   key: credential
-        - name: dind
-          image: docker:dind
-          securityContext:
-            privileged: true
-          env:
-            - name: DOCKER_TLS_CERTDIR
-              value: "" # Disable TLS — runner communicates over localhost only
 
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
