@@ -1,4 +1,4 @@
-FROM summerwind/actions-runner:ubuntu-22.04
+FROM summerwind/actions-runner-dind:ubuntu-22.04
 
 # Update package lists and install system dependencies
 RUN sudo apt-get update && sudo apt-get install -y \

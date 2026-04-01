@@ -15,6 +15,9 @@ spec:
       volumes:
         - name: shared-bin
           emptyDir: {} # Shared volume for AWS CLI, 1Password CLI, and dependencies
+        - name: docker-daemon-config
+          configMap:
+            name: docker-daemon-config
 
       initContainers:
         - name: setup-awscli
@@ -55,10 +58,13 @@ spec:
         - name: runner
           image: summerwind/actions-runner-dind:latest
           securityContext:
-            runAsUser: 1000 # Drop privileges for runner container
+            privileged: true # Required for Docker-in-Docker on Talos
           volumeMounts:
             - name: shared-bin
               mountPath: /opt/shared # Ensure shared binaries are available
+            - name: docker-daemon-config
+              mountPath: /etc/docker/daemon.json
+              subPath: daemon.json
           env:
             - name: PATH
               value: "/opt/shared:/opt/shared/python-packages/bin:/usr/local/bin:/usr/bin:/bin"
@@ -70,6 +76,18 @@ spec:
                   name: onepassword-token
                   key: credential
 
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: docker-daemon-config
+  namespace: github
+data:
+  daemon.json: |
+    {
+      "iptables": false,
+      "storage-driver": "overlay2"
+    }
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler
