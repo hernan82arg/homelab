@@ -29,5 +29,5 @@ spec:
   values:
     syncPeriod: 5m
     authSecret:
-      create: true
-      name: controller-manager-secret
+      create: false
+      name: controller-manager
