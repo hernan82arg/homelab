@@ -15,6 +15,9 @@ spec:
       volumes:
         - name: shared-bin
           emptyDir: {} # Shared volume for AWS CLI, 1Password CLI, and dependencies
+        - name: docker-sock
+          hostPath:
+            path: /run/docker.sock
 
       initContainers:
         - name: setup-awscli
@@ -56,9 +59,13 @@ spec:
           image: summerwind/actions-runner:latest
           securityContext:
             runAsUser: 1000 # Drop privileges for runner container
+            supplementalGroups:
+              - 999 # docker group GID on the host node
           volumeMounts:
             - name: shared-bin
               mountPath: /opt/shared # Ensure shared binaries are available
+            - name: docker-sock
+              mountPath: /run/docker.sock
           env:
             - name: PATH
               value: "/opt/shared:/opt/shared/python-packages/bin:/usr/local/bin:/usr/bin:/bin"
