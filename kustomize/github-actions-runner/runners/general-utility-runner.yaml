@@ -7,7 +7,7 @@ spec:
   replicas: 3
   template:
     spec:
-      organization: hernan82arg
+      repository: hernan82arg/homelab
       labels:
         - self-hosted
         - homelab
