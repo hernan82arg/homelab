@@ -1,0 +1,13 @@
+name: Dummy Workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  dummy-job:
+    runs-on: [self-hosted, generic]
+    steps:
+      - name: Print Hello World
+        run: echo "Hello from the generic self-hosted runner!"
