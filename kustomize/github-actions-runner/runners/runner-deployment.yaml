@@ -4,7 +4,6 @@ metadata:
   name: homelab-generic-runner
   namespace: github
 spec:
-  replicas: 3
   template:
     spec:
       repository: hernan82arg/homelab
