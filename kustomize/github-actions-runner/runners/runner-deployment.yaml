@@ -75,19 +75,6 @@ spec:
                 secretKeyRef:
                   name: onepassword-token
                   key: credential
-
----
-apiVersion: v1
-kind: ConfigMap
-metadata:
-  name: docker-daemon-config
-  namespace: github
-data:
-  daemon.json: |
-    {
-      "iptables": false,
-      "storage-driver": "overlay2"
-    }
 ---
 apiVersion: actions.summerwind.dev/v1alpha1
 kind: HorizontalRunnerAutoscaler

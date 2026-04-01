@@ -3,3 +3,4 @@ kind: Component
 resources:
   - runner-deployment.yaml
   - general-utility-runner.yaml
+  - configmap.yaml

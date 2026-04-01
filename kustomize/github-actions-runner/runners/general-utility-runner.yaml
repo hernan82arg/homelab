@@ -16,12 +16,22 @@ spec:
         - kubevirt
         - awscli
       serviceAccountName: homelab-general-utility-runner
+      volumes:
+        - name: docker-daemon-config
+          configMap:
+            name: docker-daemon-config
       imagePullSecrets:
         - name: ghcr-login-secret
       dockerEnabled: false
       containers:
         - name: runner
           image: ghcr.io/hernan82arg/action-runner:latest
+          securityContext:
+            privileged: true # Required for Docker-in-Docker on Talos
+          volumeMounts:
+            - name: docker-daemon-config
+              mountPath: /etc/docker/daemon.json
+              subPath: daemon.json
           env:
             - name: OP_SERVICE_ACCOUNT_TOKEN
               valueFrom:
