@@ -1,6 +1,6 @@
 platform: metal
 network:
-  loadbalancer_driver: metallb
+  loadbalancer_driver: kube-vip
   loadbalancer_ips:
     start: 192.168.1.200
     end: 192.168.1.210

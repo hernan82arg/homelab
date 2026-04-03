@@ -62,22 +62,6 @@ kustomize:
     components:
       - openebs
       - openebs/dynamic-localpv
-  - name: lb-base
-    path: lb/base
-    source: core
-    dependsOn:
-      - policy-resources
-    force: true
-    components:
-      - metallb
-  - name: lb-resources
-    path: lb/resources
-    source: core
-    dependsOn:
-      - lb-base
-    force: true
-    components:
-      - metallb/arp
   - name: ingress
     path: ingress
     source: core
