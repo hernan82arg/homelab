@@ -147,6 +147,8 @@ kustomize:
     dependsOn:
       - ingress
     force: true
+    substitutions:
+      git_repository_name: local
     components:
       - webhook
   - name: observability
