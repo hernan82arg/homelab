@@ -148,7 +148,7 @@ kustomize:
       - ingress
     force: true
     substitutions:
-      git_repository_name: local
+      git_repository_name: homelab
     components:
       - webhook
   - name: observability
