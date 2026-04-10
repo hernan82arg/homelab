@@ -15,7 +15,7 @@ spec:
       namespace: system-gateway
       sectionName: web-https
   hostnames:
-    - tapo-web.${external_domain}
+    - tapo-web.${DOMAIN}
   rules:
     - backendRefs:
         - kind: Service

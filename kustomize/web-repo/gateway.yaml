@@ -15,7 +15,7 @@ spec:
       namespace: system-gateway
       sectionName: web-https
   hostnames:
-    - web-repo.${external_domain}
+    - web-repo.${DOMAIN}
   rules:
     - backendRefs:
         - kind: Service
