@@ -6,4 +6,4 @@ resources:
   - service.yaml
   - configmap.yaml
   - namespace.yaml
-  - ingress.yaml
+  - gateway.yaml

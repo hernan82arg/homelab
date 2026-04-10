@@ -17,3 +17,6 @@ cluster:
       - local:/var/lib/openebs
 dns:
   domain: homelab.local
+addons:
+  observability:
+    enabled: true
