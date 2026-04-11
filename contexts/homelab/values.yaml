@@ -20,3 +20,5 @@ dns:
 addons:
   observability:
     enabled: true
+  private_dns:
+    enabled: true
