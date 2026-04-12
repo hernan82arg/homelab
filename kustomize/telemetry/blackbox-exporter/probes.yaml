@@ -13,5 +13,6 @@ spec:
   targets:
     staticConfig:
       static:
-        - https://grafana.homelab.local
-        - http://web-repo.homelab.local
+        - http://grafana.system-observability.svc.cluster.local
+        - http://image-web-server.web-server.svc.cluster.local
+        - http://tapo-web.tapo.svc.cluster.local
