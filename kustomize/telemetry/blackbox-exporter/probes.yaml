@@ -13,6 +13,6 @@ spec:
   targets:
     staticConfig:
       static:
-        - http://grafana.system-observability.svc.cluster.local
+        - http://grafana.system-observability.svc.cluster.local/login
         - http://image-web-server.web-server.svc.cluster.local
         - http://tapo-web.tapo.svc.cluster.local
