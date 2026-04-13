@@ -44,6 +44,18 @@ spec:
             secretKeyRef:
               name: tapo-credentials
               key: WEB_PASSWORD
+        livenessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 10
+          periodSeconds: 30
+        readinessProbe:
+          httpGet:
+            path: /healthcheck
+            port: 3000
+          initialDelaySeconds: 5
+          periodSeconds: 10
         resources:
           limits:
             memory: "256Mi"
