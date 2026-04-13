@@ -39,6 +39,11 @@ spec:
             secretKeyRef:
               name: tapo-credentials
               key: AUTH_PASSWORD
+        - name: WEB_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: tapo-credentials
+              key: WEB_PASSWORD
         resources:
           limits:
             memory: "256Mi"

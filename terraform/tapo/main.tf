@@ -24,6 +24,7 @@ resource "kubernetes_secret" "tapo_credentials" {
     TAPO_EMAIL = var.tapo_username
     TAPO_PASSWORD = var.tapo_password
     AUTH_PASSWORD = var.tapo_auth_password
+    WEB_PASSWORD = var.tapo_web_password
     }
   type = "Opaque"
 }

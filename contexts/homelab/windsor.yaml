@@ -4,6 +4,7 @@ environment:
   FLUX_SYSTEM_NAMESPACE: system-gitops
   TF_VAR_git_password: ${{ op.homelab.github_pat.token }}
   TF_VAR_tapo_auth_password: ${{ op.homelab.tapo_bulb.auth }}
+  TF_VAR_tapo_web_password: ${{ op.homelab.tapo_bulb.web }}
   TF_VAR_tapo_password: ${{ op.homelab.tapo_bulb.password }}
   TF_VAR_tapo_username: ${{ op.homelab.tapo_bulb.username }}
   TF_VAR_webhook_token: ${{ op.homelab.homelab_webhook_token.password }}

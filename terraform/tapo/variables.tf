@@ -9,3 +9,7 @@ variable "tapo_password" {
 variable "tapo_auth_password" {
   type = string
 }
+
+variable "tapo_web_password" {
+  type = string
+}
