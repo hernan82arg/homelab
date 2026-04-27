@@ -23,27 +23,6 @@ terraform:
   - path: tapo
     destroy: false
 kustomize:
-  - name: telemetry-base
-    path: telemetry/base
-    source: core
-    components:
-      - prometheus
-      - prometheus/flux
-      - fluentbit
-  - name: telemetry-resources
-    path: telemetry/resources
-    source: core
-    dependsOn:
-      - telemetry-base
-    components:
-      - metrics-server
-      - prometheus
-      - prometheus/flux
-      - fluentbit
-      - fluentbit/containerd
-      - fluentbit/fluentd
-      - fluentbit/kubernetes
-      - fluentbit/systemd
   - name: policy-base
     path: policy/base
     source: core
