@@ -12,9 +12,17 @@ cluster:
   enabled: true
   driver: talos
   endpoint: 192.168.1.27
+  cni:
+    driver: flannel
   workers:
     volumes:
       - local:/var/lib/openebs
+gateway:
+  enabled: true
+  driver: envoy
+gitops:
+  repository:
+    name: homelab
 dns:
   domain: homelab.local
 addons:
